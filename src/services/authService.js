@@ -19,9 +19,9 @@ export async function login(authDetail) {
     console.log(">> DATA When logging in! <<");
     console.log(data);
 
-    if (data.email) {
-        sessionStorage.setItem("token", JSON.stringify(data.email));
-        sessionStorage.setItem("imid", JSON.stringify(data.id));
+    if (data.accessToken) {
+        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+        sessionStorage.setItem("imid", JSON.stringify(data.user.id));
     }
 
     return data;
@@ -41,9 +41,9 @@ export async function register(authDetail) {
     }
     const data = await response.json();
 
-    if (data.email) {
-        sessionStorage.setItem("token", JSON.stringify(data.email));
-        sessionStorage.setItem("imid", JSON.stringify(data.id));
+    if (data.accessToken) {
+        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+        sessionStorage.setItem("imid", JSON.stringify(data.user.id));
     }
 
     return data;
