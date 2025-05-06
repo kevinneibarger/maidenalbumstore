@@ -1,5 +1,5 @@
 export async function getProduct(id){
-    const response = await fetch(`${process.env.REACT_APP_HOST}/444/products/${id}`);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/products/${id}`);
     if(!response.ok){
         throw { message: response.statusText, status: response.status }; //eslint-disable-line
     }
@@ -10,7 +10,7 @@ export async function getProductList(searchTerm){
 
     console.log(`>> Getting Product List with Search Term ${searchTerm} <<`);
 
-    const response = await fetch(`${process.env.REACT_APP_HOST}/444/products?q=${searchTerm ? searchTerm : ""}`);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/products?q=${searchTerm ? searchTerm : ""}`);
     if(!response.ok){
         throw { message: response.statusText, status: response.status }; //eslint-disable-line
     }
@@ -19,7 +19,7 @@ export async function getProductList(searchTerm){
 }
 
 export async function getFeaturedList(searchTerm){
-    const response = await fetch(`${process.env.REACT_APP_HOST}/444/featured_products`);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/featured_products`);
     if(!response.ok){
         throw { message: response.statusText, status: response.status }; //eslint-disable-line
     }

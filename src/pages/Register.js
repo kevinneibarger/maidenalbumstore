@@ -18,7 +18,8 @@ export const Register = () => {
             }
 
             const data = await register(authDetail);
-            data.accessToken ? navigate("/products") : toast.error(data);
+            console.log(">> Are we Navigating? ["+(data.email ? "YES" : "NO")+"]");
+            data.email ? navigate("/products") : toast.error(data);
         } catch(error) {
             toast.error(error.message, {closeButton: true, position: "bottom-center"});
         }

@@ -11,6 +11,7 @@ export const Login = () => {
     const password= useRef();
 
     async function handleLogin(event) {
+        console.log(">> HANDLE LOG EVENT! >>")
         event.preventDefault();
         try {
             const authDetail  = {
@@ -18,6 +19,7 @@ export const Login = () => {
                 password: password.current.value
             }
             const data = await login(authDetail);
+
             data.accessToken ? navigate("/products") : toast.error(data);
         } catch (error) {
             toast.error(error.message, {closeButton: true, position: "bottom-center"});
@@ -35,7 +37,8 @@ export const Login = () => {
             }
 
             const data = await login(authDetail);
-            data.accessToken ? navigate("/products") : toast.error(data);
+            console.log(">> Are we Navigating? ["+(data.email ? "YES" : "NO")+"]");
+            data.email ? navigate("/products") : toast.error(data);
         } catch (error) {
             toast.error(error.message, {closeButton: true, position: "bottom-center"});
         }

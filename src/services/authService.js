@@ -10,16 +10,18 @@ export async function login(authDetail) {
     console.log(requestOptions);
     console.log(" ^^^^ REQUEST OPTIONS ^^^^^^");
     
-    const response = await fetch(`${process.env.REACT_APP_HOST}/login`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/users`, requestOptions);
     if (!response.ok) {
         throw {message: response.statusText, status: response.status}; //eslint-disable-line
     }
 
     const data = await response.json();
+    console.log(">> DATA When logging in! <<");
+    console.log(data);
 
-    if (data.accessToken) {
-        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
-        sessionStorage.setItem("imid", JSON.stringify(data.user.id));
+    if (data.email) {
+        sessionStorage.setItem("token", JSON.stringify(data.email));
+        sessionStorage.setItem("imid", JSON.stringify(data.id));
     }
 
     return data;
@@ -33,15 +35,15 @@ export async function register(authDetail) {
         body: JSON.stringify(authDetail)
     };
 
-    const response = await fetch(`${process.env.REACT_APP_HOST}/register`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/users`, requestOptions);
     if (!response.ok) {
         throw {message: response.statusText, status: response.status}; //eslint-disable-line
     }
     const data = await response.json();
 
-    if (data.accessToken) {
-        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
-        sessionStorage.setItem("imid", JSON.stringify(data.user.id));
+    if (data.email) {
+        sessionStorage.setItem("token", JSON.stringify(data.email));
+        sessionStorage.setItem("imid", JSON.stringify(data.id));
     }
 
     return data;
